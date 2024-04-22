@@ -151,16 +151,18 @@ if download_option == 'YouTube URL':
     url = st.text_input("Enter the YouTube video URL")
     channel_name = st.text_input("Enter the channel name")
     if st.button("Download"):
-        download_video(url, channel_name)
         st.success("Downloading...")
+        download_video(url, channel_name)
+        
         st.success("Downloaded")
 
 elif download_option == 'Playlist':
     playlist_url = st.text_input("Enter the YouTube playlist URL")
     channel_name = st.text_input("Enter the channel name")
     if st.button("Download Playlist"):
-        download_playlist(playlist_url, channel_name)
         st.success("Downloading...")
+        download_playlist(playlist_url, channel_name)
+        
         st.write("Playlist downloaded")
 
 elif download_option == 'Channel':
