@@ -2,7 +2,7 @@ import os
 import certifi
 import boto3
 from botocore.exceptions import ClientError
-
+import streamlit as st
 
 ACCESS_KEY_ID = st.secrets['ACCESS_KEY_ID']
 SECRET_ACCESS_KEY = st.secrets['SECRET_ACCESS_KEY']
