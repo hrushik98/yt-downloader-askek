@@ -92,10 +92,16 @@ def download_video(url, channel_name):
 
     video_folder_name = yt.title.replace("/", "_")
     folder_path = f"{channel_name}/{video_folder_name}"
-
+    
     upload_to_s3(video_file_name, folder_path)
-    upload_to_s3("video_annotations.xml", folder_path)
-    upload_to_s3("video_subtitles.srt", folder_path)
+    try:
+        upload_to_s3("video_annotations.xml", folder_path)
+    except:
+        pass
+    try:
+        upload_to_s3("video_subtitles.srt", folder_path)
+    except:
+        pass
     upload_to_s3(thumbnail_file_name, folder_path)
 
     video_metadata["MediaURL"] = f"https://{BUCKET_NAME}.s3.amazonaws.com/{folder_path}/{os.path.basename(video_file_name)}"
@@ -107,8 +113,14 @@ def download_video(url, channel_name):
     upload_to_s3("metadata.json", folder_path)
 
     os.remove(video_file_name)
-    os.remove("video_annotations.xml")
-    os.remove("video_subtitles.srt")
+    try:
+        os.remove("video_annotations.xml")
+    except:
+        pass
+    try:
+        os.remove("video_subtitles.srt")
+    except:
+        pass
     os.remove(thumbnail_file_name)
     os.remove("metadata.json")
 
